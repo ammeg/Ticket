@@ -1,0 +1,16 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Old/Tickets/Syns.Ticket/packages
+/Old/Tickets/Syns.Ticket/Syns.Ticket.Business/bin/Debug
+/Old/Tickets/Syns.Ticket/Syns.Ticket.Business/obj/Debug
+/Old/Tickets/Syns.Ticket/.vs
+/.vs
+/Old/Tickets/Syns.Ticket/Syns.Ticket.ClientMvc/bin
+/Old/Tickets/Syns.Ticket/Syns.Ticket.ClientMvc/obj/Debug
+/Old/Tickets/Syns.Ticket/Syns.Ticket.Lib/bin/Debug
+/Old/Tickets/Syns.Ticket/Syns.Ticket.Lib/obj/Debug
+/src/Ticket/bin/Debug/netcoreapp1.0
+/src/Ticket/obj/Debug/netcoreapp1.0
+/src/Ticket/Ticket.xproj.user
