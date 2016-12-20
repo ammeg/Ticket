@@ -1,0 +1,30 @@
+﻿@model List<Syns.Ticket.Business.Entities.SistemaEntity>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@Html.ActionLink("Inserir", "Inserir")
+
+<table>
+    <thead>
+        <tr>
+            <td></td>
+            <td>SistemaId</td>
+            <td>DataAtualizacao</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sistema in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Editar", "Editar", new { @id = sistema.SistemaId }) | @Html.ActionLink("Excluir", "Excluir", new { @id = sistema.SistemaId })
+                </td>
+                <td>@sistema.SistemaId</td>
+                <td>@sistema.DataAtualizacao</td>
+            </tr>
+        }
+    </tbody>
+</table>

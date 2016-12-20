@@ -1,0 +1,33 @@
+﻿@*@{
+
+}
+
+
+<input type="hidden" value="@Url.Action("UsuarioNomeUrl", "Usuario")" id="UsuarioDescricaoUrl" />
+<input type="hidden" value="@Url.Action("UsuarioIdUrl", "Usuario")" id="UsuarioIdUrl" />
+
+
+<input type="hidden" value="@Url.Action("DepartamentoDescricaoUrl", "UsuarioDepartamento")" id="DepartamentoDescricaoUrl" />
+<input type="hidden" value="@Url.Action("DepartamentoIdUrl", "UsuarioDepartamento")" id="DepartamentoIdUrl" />
+
+
+<div>Home</div>
+
+
+<input type="text" id="testeId" value="1"/>
+<input type="text" id="teste" />
+
+@section styles {
+    <link href="~/Content/themes/base/jquery.ui.all.css" rel="stylesheet" />
+}
+
+@section scripts{
+
+    <script src="~/Scripts/jquery-ui-1.10.4.js"></script>
+    <script src="~/Scripts/syns/Usuario/Usuario.Autocomplete.js"></script>
+    <script type="text/javascript">
+        $("#teste").usuario({  // colocar de usuário
+            usuarioId: $("#testeId")
+        });
+    </script>
+}*@

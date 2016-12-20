@@ -1,0 +1,58 @@
+﻿@model Syns.Ticket.ClientMvc.Models.TicketAnexoModel
+
+<div id="TicketAnexoDiv">
+    <div>
+        @Html.Partial("_TicketAnexoCad", Model.TicketAnexoEntity)
+    </div>
+
+
+
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead style="font-weight:bold">
+                <tr>
+                    <td class="col-md-2">
+                        #
+                    <td class="col-md-8">
+                        Observação
+                    </td>
+                    <td class="col-md-4">
+                        Upload
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.TicketAnexoList)
+                {
+
+                    <tr>
+                        <td>
+                            @item.TicketAnexoId
+                        </td>
+
+                        <td>
+
+                            @item.Observacao
+
+                        </td>
+                        <td>
+                            <a class="fancybox" href="@Url.Content(item.CaminhoArquivo)" data-fancybox-group="gallery" title="@item.Observacao">
+                                <img src="@Url.Content(item.CaminhoArquivo)" vspace="15" hspace="15" width="100" height="100" alt="Responsive image" class="img-rounded" />
+                            </a>
+
+
+                            @*<a id="example5" href="@Url.Content(item.CaminhoArquivo)" title="@item.Observacao">
+                            <img alt="example4" src="@Url.Content(item.CaminhoArquivo)" vspace="15" hspace="15" width="100" height="100" class="img-rounded" />
+                            </a>*@
+                            @*<a href="#myModal" data-toggle="modal" data-load-remote="@Url.Content(item.CaminhoArquivo)" data-remote-target="#myModal .modal-body">
+                                    <img alt="example4" src="@Url.Content(item.CaminhoArquivo)" vspace="15" hspace="15" width="100" height="100" alt="Responsive image" class="img-rounded" />
+                                </a>*@
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

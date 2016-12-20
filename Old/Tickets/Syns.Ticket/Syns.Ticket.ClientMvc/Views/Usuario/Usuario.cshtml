@@ -1,0 +1,72 @@
+﻿@model Syns.Ticket.Business.Entities.UsuarioEntity
+@{
+    ViewBag.Title = "Inserir";
+}
+<br />
+<br />
+
+<input type="hidden" value="@Url.Action("UsuarioPerfilDescricaoUrl", "UsuarioPerfil")" id="UsuarioPerfilDescricaoUrl" />
+<input type="hidden" value="@Url.Action("UsuarioPerfilIdUrl", "UsuarioPerfil")" id="UsuarioPerfilIdUrl" />
+
+
+@using (Html.BeginForm())
+{
+    if (Model != null && Model.UsuarioId != 0)
+    {
+        @Html.HiddenFor(a => a.UsuarioId)
+        @Html.HiddenFor(a => a.UsuarioCadId)
+        @Html.HiddenFor(a => a.DataHoraCad)
+        @Html.HiddenFor(a => a.Ativo)
+    }
+
+    <div>
+        <div>
+            @Html.LabelFor(u => u.Nome)
+            @Html.EditorFor(u => u.Nome)
+        </div>
+
+        <div>
+            @Html.LabelFor(u => u.Login)
+            @Html.EditorFor(u => u.Login)
+        </div>
+
+        <div>
+            @Html.LabelFor(u => u.Email)
+            @Html.EditorFor(u => u.Email)
+        </div>
+
+        <div>
+            @Html.LabelFor(u => u.Senha)
+            @Html.EditorFor(u => u.Senha)
+        </div>
+        <div>
+            @Html.LabelFor(u => u.MudarSenhaProximoLogin)
+            @Html.EditorFor(u => u.MudarSenhaProximoLogin)
+        </div>
+        <div>
+            @Html.LabelFor(u => u.UsuarioPerfilId)
+            @Html.HiddenFor(u => u.UsuarioPerfilId)
+
+            <input type="text" id="UsuarioPerfilDescricao" />
+        </div>
+    </div>
+    <br />
+    <div class="button">
+        <input class="btn btn-primary" type="submit" value="Salvar" />
+    </div>
+
+}
+
+@section styles {
+    <link href="~/Content/themes/base/jquery.ui.all.css" rel="stylesheet" />
+}
+
+@section scripts {
+    <script src="~/Scripts/jquery-ui-1.10.4.js"></script>
+    <script src="~/Scripts/syns/UsuarioPerfil/UsuarioPerfil.Autocomplete.js"></script>
+    <script type="text/javascript">
+        $("#UsuarioPerfilDescricao").usuarioPerfil({
+            usuarioPerfilId: $("#UsuarioPerfilId")
+        });
+    </script>
+}

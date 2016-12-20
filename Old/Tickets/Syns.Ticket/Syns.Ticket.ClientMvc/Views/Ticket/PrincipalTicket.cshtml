@@ -1,0 +1,220 @@
+﻿@model Syns.Ticket.ClientMvc.Models.TicketModel
+@{
+    ViewBag.Title = "PrincipalTicket";
+}
+<br />
+<ul class="nav nav-tabs">
+
+    <li class="active"><a href="#TicketDiv" data-toggle="tab" id="Ticket">Ticket</a></li>
+    @*Se o Ticket não for Novo habilita as abas*@
+    @if (Model != null && Model.TicketEntity != null && Model.TicketEntity != null && Model.TicketEntity.TicketId > 0)
+    {
+        <li><a href="#anexosDiv" data-toggle="tab" id="anexoTab">Anexos</a></li>
+        <li><a href="#andamentoDiv" data-toggle="tab" id="andamentoTab">Andamento</a></li>
+        <li><a href="#historicoDiv" data-toggle="tab" id="historicoTab">Histórico</a></li>
+    }
+</ul>
+<div class="tab-content">
+    <div id="TicketDiv" class="tab-pane active">
+        @Html.Partial("_Ticket", Model.TicketEntity)
+    </div>
+
+    @*@if (Model != null && Model.TicketEntity != null && Model.TicketEntity != null && Model.TicketEntity.TicketId > 0)
+        {*@
+    @if (Model != null && Model.TicketEntity != null && Model.TicketEntity != null && Model.TicketEntity.TicketId > 0)
+    {
+        <div id="anexosDiv" class="tab-pane">
+
+            @*@Html.Partial("_TicketAnexo", new Syns.Ticket.Business.Entities.TicketAnexoEntity() { TicketId = Model.TicketId })*@
+            @Html.Partial("_TicketAnexo", Model.TicketAnexoModel)
+        </div>
+
+        <div id="andamentoDiv" class="tab-pane" >
+            <div>
+                @Html.Partial("_Andamento", Model.TicketAndamentoModel)
+            </div>
+            <div>
+                @*Lista de Adamentos*@
+                <table id="tbl_TicketAndamentoList">
+                    <thead>
+                        <tr>
+                            <td>Id</td>
+                            <td>Descrição</td>
+                            <td>Status</td>
+                            <td>Departamento</td>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <div id="historicoDiv" class="tab-pane">
+            Histórico
+        </div>
+    }
+
+</div>
+@section styles {
+    <link href="~/Content/themes/base/jquery.ui.all.css" rel="stylesheet" />
+    <link href="~/Scripts/DataTables-1.9.4/media/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="~/Scripts/fancyapps-fancyBox-18d1712/source/jquery.fancybox.css" rel="stylesheet" />
+    <link href="~/Scripts/datepicker/datepicker/css/datepicker.css" rel="stylesheet" />
+
+}
+
+@section scripts {
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery-ui-1.10.4.js"></script>
+    <script src="~/Scripts/DataTables-1.9.4/media/js/jquery.dataTables.js"></script>
+    <script src="~/Scripts/syns/Departamento/Departamento.Autocomplete.js"></script>
+    <script src="~/Scripts/syns/Usuario/Usuario.Autocomplete.js"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+    <script src="~/Scripts/fancyapps-fancyBox-18d1712/source/jquery.fancybox.pack.js"></script>
+    <script src="~/Scripts/datepicker/datepicker/js/bootstrap-datepicker.js"></script>
+
+    <script type="text/javascript">
+        // Ativar painel andamento
+        $(function () {
+            var activeTab = $('[href=' + location.hash + ']');
+            activeTab && activeTab.tab('show');
+        });
+
+        //usuário atualmente logado
+        $("#UsuarioNomeInput").usuario({
+            usuarioId: $("#UsuarioId")
+        });
+
+        //usuário responsavel
+        $("#UsuarioResponsavelInput").usuario({
+            usuarioId: $("#UsuarioResponsavelId")
+        });
+
+        //Departamento
+        $("#ticket #DepartamentoDescricao").departamento({
+            departamentoId: $("#ticket #DepartamentoId")
+        });
+
+        //Departamento
+        $("#andamento #DepartamentoDescricao").departamento({
+            departamentoId: $("#andamento #DepartamentoId")
+        });
+
+
+        $.extend($.fn.dataTable.defaults, {
+            "bFilter": true,
+            "aLengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
+            "sPaginationType": "full_numbers",
+            "bProcessing": true,
+            "bServerSide": true,
+            "bStateSave": true,
+            "bSortMulti": false,
+        });
+
+
+        var ticketAndamentoTable = $("#tbl_TicketAndamentoList").dataTable({
+            "oLanguage": {
+                "oPaginate": {
+                    "sFirst": "Primeira",
+                    "sLast": "Última",
+                    "sNext": "Próxima",
+                    "sPrevious": "Anterior"
+                },
+                "sEmptyTable": "Nenhum registro encontrado",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sInfo": "Mostrando _START_ de _END_ de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando 0 de _END_ de _TOTAL_ registros",
+                "sLoadingRecords": "Aguarde...",
+                "sProcessing": "Aguarde..."
+            },
+
+            "sCookiePrefix": "ticketAndamento_Pesquisa",
+            "aoColumns": [
+                   { "mData": "TicketId" },
+                    { "mData": "Descricao" },
+                      { "mData": "Status" },
+                        { "mData": "DepartamentoId" },
+
+
+            ],
+
+            "sAjaxSource": "@Url.Action("PesquisarAndamento", "Ticket")",
+
+            "fnServerData": function (sSource, aoData, fnCallback) {
+                /* Add some extra data to the sender */
+                aoData.push({ "name": "ticketId", "value": $('#TicketId').val() });
+                $.getJSON(sSource, aoData, function (json) {
+                    /* Do whatever additional processing you want on the callback, then tell DataTables */
+                    fnCallback(json);
+                });
+            }
+        });
+        /* imagem anexo */
+        $(document).ready(function () {
+            $(".fancybox").fancybox({
+                openEffect: 'none',
+                closeEffect: 'none'
+            });
+        });
+
+        $('input[type=file]').bootstrapFileInput();
+        $('.file-inputs').bootstrapFileInput();
+
+        /* imagem anexo fim */
+        /* andamento date picker início*/
+        if (top.location != location) {
+            top.location.href = document.location.href;
+        }
+        $(function () {
+            window.prettyPrint && prettyPrint();
+            $('#dp1, #Data, #DataHora').datepicker({
+                format: 'dd/mm/yyyy'
+            });
+
+        });
+
+
+
+        /* andamento date picker FIM*/
+        function OnCompleteAndamento() {
+            ticketAndamentoTable.fnFilter();
+        }
+
+        (function () {
+
+            var bar = $('.progress-bar');
+            var percent = $('.progress-bar');
+            var status = $('#status');
+
+            $('#formAnexo').ajaxForm({
+                beforeSend: function () {
+                    status.empty();
+                    var percentVal = '0%';
+                    bar.width(percentVal)
+                    percent.html(percentVal);
+                },
+                uploadProgress: function (event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%';
+                    bar.width(percentVal)
+                    percent.html(percentVal);
+                },
+                success: function () {
+                    var percentVal = '100%';
+                    bar.width(percentVal)
+                    percent.html(percentVal);
+                    $("#ClienteFotoDiv").load("@Url.Action("SalvarArquivo", "Ticket", new { @id=Model.TicketEntity.TicketId })")
+                },
+                complete: function (xhr) {
+                    status.html(xhr.responseText);
+                }
+            });
+
+        })();
+
+
+    </script>
+}
+
+

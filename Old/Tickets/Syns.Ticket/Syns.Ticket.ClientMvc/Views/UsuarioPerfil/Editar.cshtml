@@ -1,0 +1,27 @@
+﻿@model Syns.Ticket.Business.Entities.UsuarioPerfilEntity
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editar</h2>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(a => a.UsuarioPerfilId)
+    @Html.ValidationSummary(true)
+    <div>
+        <div>
+
+            @Html.HiddenFor(a => a.UsuarioPerfilId)
+        </div>
+        <div>
+            @Html.LabelFor(a => a.Descricao)
+            @Html.EditorFor(a => a.Descricao)
+        </div>
+    </div>
+    <br />
+    <div class="row" >
+        <div class="col-md-3">
+            <input class="btn btn-primary" type="submit" value="Salvar"/>
+        </div>
+    </div>
+}

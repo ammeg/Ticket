@@ -1,0 +1,55 @@
+﻿@model Syns.Ticket.Business.Entities.TicketEntity
+@{
+    ViewBag.Title = "Selecionar";
+}
+
+<h2>Selecionar</h2>
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    Ticket <b>@Html.DisplayFor(a => a.Descricao)</b> Selecionado
+                </a>
+            </h4>
+        </div>
+        @*<div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <div>
+                        <div>
+                            @Html.LabelFor(a => a.UsuarioId):
+                            @Html.DisplayFor(a => a.UsuarioId)
+                        </div>
+                        <div>
+                            @Html.LabelFor(a => a.Nome):
+                            @Html.DisplayFor(a => a.Nome)
+                        </div>
+                        <div>
+                            @Html.LabelFor(a => a.Email):
+                            @Html.DisplayFor(a => a.Email)
+                        </div>
+                        <div>
+                            @Html.LabelFor(a => a.Login):
+                            @Html.DisplayFor(a => a.Login)
+                        </div>
+                        <div>
+                            @Html.LabelFor(a => a.UsuarioPerfilId)
+                            @Html.DisplayFor(a => a.UsuarioPerfilId)
+                        </div>
+                        <div>
+                            @Html.LabelFor(a => a.MudarSenhaProximoLogin):
+                            @Html.DisplayFor(a => a.MudarSenhaProximoLogin)
+                        </div>
+                    </div>
+                    <div>
+
+                        @Html.ActionLink("Editar", "Editar", "Usuario", new { @id = Model.UsuarioId }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Excluir", "Excluir", "Usuario", new { @id = Model.UsuarioId }, new { @class = "btn btn-danger" })
+                        @Html.ActionLink("Voltar", "Index", "Usuario", null, new { @class = "btn btn-default" })
+
+                    </div>
+                </div>
+            </div>*@
+    </div>
+
+</div>

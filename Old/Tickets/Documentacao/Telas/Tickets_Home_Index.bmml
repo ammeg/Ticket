@@ -1,0 +1,53 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1113" measuredH="735" mockupW="1053" mockupH="720">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="60" y="15" w="1053" h="720" measuredW="450" measuredH="400" zOrder="0" locked="true" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>squareBreakline</borderStyle>
+        <text>A%20Web%20Page%0Ahttp%3A//www.lucasostsm.com.br/SistemaDeTickets/Index</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::MenuBar" x="68" y="97" w="1030" h="52" measuredW="240" measuredH="29" zOrder="1" locked="true" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>square</borderStyle>
+        <icon>HomeIcon%7Csmall</icon>
+        <selectedIndex>0</selectedIndex>
+        <text>Home%2C%20Ticket%2C%20Cadastro</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::IconLabel" x="1052" y="97" w="-1" h="-1" measuredW="25" measuredH="39" zOrder="2" locked="true" isInGroup="-1">
+      <controlProperties>
+        <icon>XIcon%7Csmall</icon>
+        <text>Sair</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="813" y="113" w="211" h="-1" measuredW="194" measuredH="21" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>28/03/2014%20Boa%20Tarde%20%23Usu%E1rio</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::DataGrid" x="75" y="219" w="-1" h="-1" measuredW="659" measuredH="81" zOrder="4" locked="true" isInGroup="-1">
+      <controlProperties>
+        <text>Protocolo%20%5E%2C%20Assunto%20%5Ev%2C%20Descri%E7%E3o%2C%20Usu%E1rio%20v%0ATIC-02-05-14-001%2C%20SEM%20INTERNET%2C%20AP%D3S%20A%20FORMATA%C7%C3O%2C%20FERNANO%0AVEN-28-03-14-005%2C%20PC%20N%C3O%20LIGA%2C%20HOUVE%20UMA%20QUEDA%20DE%20LUZ%20E%20O%20PC%20N%C3O%20LIGOU%20MAIS%2C%20TAISE</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Label" x="273" y="176" w="-1" h="-1" measuredW="150" measuredH="28" zOrder="5" locked="true" isInGroup="-1">
+      <controlProperties>
+        <color>13369344</color>
+        <size>20</size>
+        <text>Tickets%20Abertos%20</text>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::DataGrid" x="748" y="219" w="-1" h="-1" measuredW="350" measuredH="81" zOrder="6" locked="true" isInGroup="-1">
+      <controlProperties>
+        <text>Protocolo%2C%20Assunto%20Usu%E1rio%0ASUP-02-04-14-008%2C%20V%CDRUS%2C%20FRANCISCO%0AREC-04-01-14-047%2C%20MAL%20ATENDIMENTO%2C%20ROBERTO</text>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::Label" x="842" y="176" w="-1" h="-1" measuredW="210" measuredH="28" zOrder="7" locked="true" isInGroup="-1">
+      <controlProperties>
+        <color>545684</color>
+        <size>20</size>
+        <text>Tickets%20em%20Andamento</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

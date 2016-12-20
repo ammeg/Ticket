@@ -1,0 +1,37 @@
+﻿@model List<Syns.Ticket.Business.Entities.UsuarioPerfilEntity>
+@{
+    ViewBag.Title = "Index";
+}
+
+<input type="hidden" value="@Url.Action("Pesquisar", "UsuarioPerfil")" id="pesquisarUrl" />
+<input type="hidden" value="@Url.Action("Selecionar", "UsuarioPerfil")" id="selecionarId" />
+
+<h2>Index</h2>
+
+<div>
+    @Html.ActionLink("Inserir", "Inserir", null, new { @class = "btn btn-primary" })
+</div>
+<div>
+    <b> Descrição: </b>
+    <input type="text" id="descricao" value="@ViewBag.Descricao" />
+    </div>
+<br />
+    <table class="table table-bordered" id="tblUsuarioPerfil">
+        <thead>
+            <tr>
+                <td></td>
+                <td>Descrição</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    @section styles {
+        <link href="~/Scripts/DataTables-1.9.4/media/css/jquery.dataTables.css" rel="stylesheet" />
+    }
+
+    @section scripts {
+        <script src="~/Scripts/DataTables-1.9.4/media/js/jquery.dataTables.js"></script>
+        <script src="~/Scripts/jquery.dataTables.columnFilter.js"></script>
+        <script src="~/Scripts/syns/UsuarioPerfil/UsuarioPerfil.index.js"></script>
+    }

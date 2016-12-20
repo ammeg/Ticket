@@ -1,0 +1,22 @@
+﻿@model Syns.Ticket.Business.Entities.UsuarioPerfilEntity
+    @{
+        ViewBag.Title = "Inserir";
+    }
+
+    <h2>Inserir</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(false)
+        <div>
+            <div>
+                @Html.LabelFor(u => u.Descricao)
+                @Html.EditorFor(u => u.Descricao)
+            </div>
+        </div>
+        <br />
+     <div class="button">
+        <input class="btn btn-primary" type="submit" value="Salvar" />
+        </div>
+
+    }

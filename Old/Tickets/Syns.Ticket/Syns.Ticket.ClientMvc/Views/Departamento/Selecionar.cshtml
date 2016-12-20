@@ -1,0 +1,54 @@
+﻿@model Syns.Ticket.Business.Entities.DepartamentoEntity
+@{
+    ViewBag.Title = "Selecionar";
+}
+
+<h2>Selecionar</h2>
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    Departamento <b>@Html.DisplayFor(a => a.Descricao)</b> Selecionado
+                </a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <div>
+                    <div>
+                        @Html.LabelFor(a => a.DepartamentoId):
+                        @Html.DisplayFor(a => a.DepartamentoId)
+                    </div>
+                    <div>
+                        @Html.LabelFor(a => a.Descricao):
+                        @Html.DisplayFor(a => a.Descricao)
+                    </div>
+                    <div>
+                        @Html.LabelFor(a => a.Email):
+                        @Html.DisplayFor(a => a.Email)
+                    </div>
+                    <div>
+                        @Html.LabelFor(a => a.Sigla):
+                        @Html.DisplayFor(a => a.Sigla)
+                    </div>
+                    <div>
+                        @Html.LabelFor(a => a.DepartamentoMasterId)
+                        @Html.DisplayFor(a => a.DepartamentoMasterId)
+                    </div>
+                   
+                </div>
+                <div>
+
+                    @Html.ActionLink("Editar", "Editar", "Departamento", new { @id = Model.DepartamentoId }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Excluir", "Excluir", "Departamento", new { @id = Model.DepartamentoId }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Voltar", "Index", "Departamento", null, new { @class = "btn btn-default" })
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

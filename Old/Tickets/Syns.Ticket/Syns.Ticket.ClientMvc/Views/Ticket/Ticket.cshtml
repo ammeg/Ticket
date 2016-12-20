@@ -1,0 +1,114 @@
+﻿@model Syns.Ticket.ClientMvc.Models.TicketModel
+@{
+    ViewBag.Title = "Ticket.cshtml";
+}
+@*auto complete usuario*@
+<input type="hidden" value="@Url.Action("UsuarioNomeUrl", "Usuario")" id="UsuarioNomeUrl" />
+<input type="hidden" value="@Url.Action("UsuarioIdUrl", "Usuario")" id="UsuarioIdUrl" />
+@*auto complete departamento*@
+<input type="hidden" value="@Url.Action("DepartamentoDescricaoUrl", "Departamento")" id="DepartamentoDescricaoUrl" />
+<input type="hidden" value="@Url.Action("DepartamentoIdUrl", "Departamento")" id="DepartamentoIdUrl" />
+
+
+@if (Model != null)
+{
+    @Html.HiddenFor(a => a.TicketEntity.UsuarioCadId)
+    @Html.HiddenFor(a => a.TicketEntity.DataHoraCad)
+    @Html.HiddenFor(a => a.TicketEntity.Ativo)
+}
+
+<div>
+    @*COLUNAS À ESQUERDA*@
+
+    <div class="col-md-6 panel">
+        <div class="col-md-6 panel panel">
+            @Html.LabelFor(u => u.TicketEntity.TicketMasterId)
+        </div>
+        <div class="col-md-6 panel panel">
+            @Html.TextBoxFor(u => u.TicketEntity.TicketMasterId, new { @readonly = "readonly", @name = "" })
+        </div>
+        
+        <div class="col-md-6 panel">
+            @Html.LabelFor(u => u.TicketEntity.Prioridade)
+        </div>
+        <div class="col-md-6 panel">
+            @Html.TextBoxFor(u => u.TicketEntity.Prioridade, new { @readonly = "readonly", @name = "" })
+        </div>
+        <div class="col-md-6 panel">
+            @Html.LabelFor(u => u.TicketEntity.DataCadastro)
+        </div>
+        <div class="col-md-6 panel">
+            @Html.TextBoxFor(u => u.TicketEntity.DataCadastro, new { @readonly = "readonly", @name = "" })
+        </div>
+        <div class="col-md-6 panel">
+            @Html.LabelFor(u => u.TicketEntity.DepartamentoId)
+        </div>
+        <div class="col-md-6 panel">
+            @Html.TextBoxFor(u => u.TicketEntity.DepartamentoId, new { @readonly = "readonly", @name = "" })
+        </div>
+        <div class="col-md-6 panel">
+            @Html.LabelFor(u => u.TicketEntity.Visibilidade)
+        </div>
+        <div class="col-md-6 panel">
+            @Html.TextBoxFor(u => u.TicketEntity.Visibilidade, new { @readonly = "readonly", @name = "" })
+        </div>
+    </div>
+    @*COLUNAS À DIREITA*@
+    <div class="col-md-6 panel">
+        <div class="col-md-6 panel">
+            @Html.LabelFor(u => u.TicketEntity.CategoriaId)
+        </div>
+        <div class="col-md-6 panel">
+            @Html.TextBoxFor(u => u.TicketEntity.CategoriaId, new { @readonly = "readonly", @name = "" })
+        </div>
+        <div class="col-md-6 panel">
+            @Html.LabelFor(u => u.TicketEntity.Assunto)
+        </div>
+        <div class="col-md-6 panel">
+            @Html.TextBoxFor(u => u.TicketEntity.Assunto, new { @readonly = "readonly", @name = "" })
+        </div>
+        <div class="col-md-6 panel">
+            @Html.LabelFor(u => u.TicketEntity.UsuarioId)
+        </div>
+        <div class="col-md-6 panel">
+            @Html.TextBoxFor(u => u.TicketEntity.UsuarioId, new { @readonly = "readonly", @name = "" })
+        </div>
+        <div class="col-md-6 panel">
+            @Html.LabelFor(u => u.TicketEntity.UsuarioResponsavelId)
+        </div>
+        <div class="col-md-6 panel">
+            @Html.TextBoxFor(u => u.TicketEntity.UsuarioResponsavelId, new { @readonly = "readonly", @name = "" })
+        </div>
+        <div class="col-md-6 panel">
+            @Html.LabelFor(u => u.TicketEntity.DataPrevisao)
+        </div>
+        <div class="col-md-6 panel">
+            @Html.TextBoxFor(u => u.TicketEntity.DataPrevisao, new { @readonly = "readonly", @name = "" })
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <input type="submit" value="Salvar" />
+</div>
+
+
+@section styles {
+    <link href="~/Content/themes/base/jquery.ui.all.css" rel="stylesheet" />
+}
+
+@section scripts {
+    <script src="~/Scripts/jquery-ui-1.10.4.js"></script>
+    <script src="~/Scripts/syns/Departamento/Departamento.Autocomplete.js"></script>
+    <script src="~/Scripts/syns/Usuario/Usuario.Autocomplete.js"></script>
+    <script type="text/javascript">
+        $("#UsuarioNomeInput").usuario({  // colocar de usuário
+            usuarioId: $("#UsuarioId")
+        });
+
+        $("#DepartamentoDescricao").departamento({    //colocar de departamento
+            departamentoId: $("#DepartamentoId")
+        });
+
+    </script>
+}

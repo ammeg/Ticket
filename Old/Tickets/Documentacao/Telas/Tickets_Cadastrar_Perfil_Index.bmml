@@ -1,0 +1,65 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1110" measuredH="740" mockupW="1053" mockupH="720">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="57" y="20" w="1053" h="720" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>squareBreakline</borderStyle>
+        <text>A%20Web%20Page%0Ahttp%3A//www.lucasostsm.com.br/SistemaDeTickets/Tickets</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::MenuBar" x="72" y="97" w="1030" h="52" measuredW="198" measuredH="29" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>square</borderStyle>
+        <hrefs>Tickets_Ticket_Index%26bm%3BTickets_Ticket_Index.bmml%26bm%3BTickets_Ticket_Index.bmml%26bm%3BTickets_Ticket_Index.bmml%2CTickets_Ticket_Index%26bm%3BTickets_Ticket_Index.bmml%26bm%3BTickets_Ticket_Index.bmml%26bm%3BTickets_Ticket_Index.bmml%2C</hrefs>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2233%2C98.5%2C76%2C111.5%22%20href%3D%22Tickets_Ticket_Index.bmml%22%20alt%3D%22Tickets_Ticket_Index%22%20id%3D%221%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%2285%2C98.5%2C130%2C111.5%22%20href%3D%22Tickets_Ticket_Index.bmml%22%20alt%3D%22Tickets_Ticket_Index%22%20id%3D%221%22/%3E</map>
+        <selectedIndex>2</selectedIndex>
+        <text>Home%2C%20Ticket%2C%20Cadastro</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::IconLabel" x="1052" y="97" w="-1" h="-1" measuredW="25" measuredH="39" zOrder="1" locked="true" isInGroup="-1">
+      <controlProperties>
+        <icon>XIcon%7Csmall</icon>
+        <text>Sair</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="813" y="113" w="211" h="-1" measuredW="194" measuredH="21" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>28/03/2014%20Boa%20Tarde%20%23Usu%E1rio</text>
+      </controlProperties>
+    </control>
+    <control controlID="43" controlTypeID="com.balsamiq.mockups::ComboBox" x="185" y="127" w="93" h="-1" measuredW="86" measuredH="93" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <state>disabled</state>
+        <text>Cadastro%0AUsus%E1rio%0ADepartamento%0AUsu%E1rio%20Perfil%0AUsu%E1rio%20Departamento</text>
+      </controlProperties>
+    </control>
+    <control controlID="44" controlTypeID="com.balsamiq.mockups::Label" x="331" y="163" w="-1" h="-1" measuredW="446" measuredH="36" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <color>13369344</color>
+        <size>28</size>
+        <text>Ticket%20-%20Cadastrar%20-%20Perfil%20-%20Index</text>
+      </controlProperties>
+    </control>
+    <control controlID="45" controlTypeID="com.balsamiq.mockups::Label" x="79" y="235" w="-1" h="-1" measuredW="33" measuredH="21" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Perfil%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="46" controlTypeID="com.balsamiq.mockups::Button" x="79" y="295" w="-1" h="-1" measuredW="61" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>472931</color>
+        <text>Inserir</text>
+      </controlProperties>
+    </control>
+    <control controlID="47" controlTypeID="com.balsamiq.mockups::SearchBox" x="72" y="256" w="367" h="-1" measuredW="120" measuredH="24" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="48" controlTypeID="com.balsamiq.mockups::DataGrid" x="79" y="349" w="974" h="195" measuredW="171" measuredH="81" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>--%2C%20%20Perfil%0ASelecionar%2C%20Administrador%0ASelecionar%2C%20Usu%E1rio</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

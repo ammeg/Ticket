@@ -1,0 +1,49 @@
+﻿@model  Syns.Ticket.ClientMvc.Models.UsuarioLoginModel
+@{
+    ViewBag.Title = "Entrar";
+}
+
+<h2>Entrar</h2>
+@using (@Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-3">
+            <label>@Html.LabelFor(a => a.Login)</label>
+            @Html.EditorFor(a => a.Login)
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <label>Senha</label>
+            @Html.EditorFor(a => a.Senha)
+        </div>
+    </div>
+
+    <div class="button">
+        <input type="submit" value="Entrar" class="btn btn-primary" />
+
+    </div>
+
+
+}
+
+@section styles{
+    <!--Start styles Usuario/Login-->
+    <style type="text/css">
+        .button {
+            margin-top: 5px;
+        }
+    </style>
+    <!--End styles Usuario/Login-->
+}
+
+@section scripts{
+    <!--Start script Usuario/Login-->
+    <script type="text/javascript">
+
+    </script>
+    <!--End script Usuario/Login-->
+}
+

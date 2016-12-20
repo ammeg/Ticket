@@ -1,0 +1,31 @@
+﻿@model Syns.Ticket.Business.Entities.TicketAnexoEntity
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<h2>EXEMPLO 2</h2>
+@using (Html.BeginForm("Upload", "TicketAnexo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.EditorFor(a => a.Observacao)
+    <input type="file" name="FileUpload" />
+    <input type="submit" name="Submit" id="Submit" value="Upload" />
+}
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#home" data-toggle="tab" id="homeTab">Home</a></li>
+    <li><a href="#profile" data-toggle="tab" id="profileTab">Profile</a></li>
+    <li><a href="#messages" data-toggle="tab" id="messagesTab">Messages</a></li>
+
+
+</ul>
+
+<div class="tab-content">
+    <div id="home" class="tab-pane active">Test Home</div>
+
+    <div id="profile" class="tab-pane">Test profile</div>
+
+    <div id="messages" class="tab-pane">Test messages</div>
+</div>

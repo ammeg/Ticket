@@ -1,0 +1,47 @@
+﻿@model Syns.Ticket.Business.Entities.TicketAnexoEntity
+<div id="CadAnexo">
+    @using (Ajax.BeginForm("SalvarArquivo", "Ticket", null,
+        new AjaxOptions()
+        {
+            HttpMethod = "POST",
+            UpdateTargetId = "TicketAnexoDiv",
+            InsertionMode = InsertionMode.Replace
+        },
+            new { enctype = "multipart/form-data", @id = "formAnexo" }))
+    {
+        @Html.ValidationSummary(true)
+        if (Model != null && Model.TicketId > 0)
+        {
+            @Html.HiddenFor(a => a.UsuarioCadId)
+            @Html.HiddenFor(a => a.DataHoraCad)
+            @Html.HiddenFor(a => a.Ativo)
+        }
+        @Html.HiddenFor(a => a.TicketId)
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <label>Observação</label>
+                @Html.EditorFor(a => a.Observacao)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+
+                <label>Selecione arquivo: </label>
+                @Html.AntiForgeryToken()
+                <input type="file" name="files" multiple />
+
+            </div>
+        </div>
+        <div class="btn">
+            <input type="submit" class="btn btn-primary" value="Enviar Anexo" />
+
+        </div>
+    }
+</div>
+
+<div class="progress progress-striped">
+    <div class="progress-bar progress-bar-success">0%</div>
+</div>
+
+<div id="status"></div>

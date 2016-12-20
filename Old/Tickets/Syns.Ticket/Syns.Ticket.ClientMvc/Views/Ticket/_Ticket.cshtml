@@ -1,0 +1,70 @@
+﻿@model Syns.Ticket.Business.Entities.TicketEntity
+@*auto complete usuario*@
+<input type="hidden" value="@Url.Action("UsuarioNomeUrl", "Usuario")" id="UsuarioNomeUrl" />
+<input type="hidden" value="@Url.Action("UsuarioIdUrl", "Usuario")" id="UsuarioIdUrl" />
+@*auto complete departamento*@
+<input type="hidden" value="@Url.Action("DepartamentoDescricaoUrl", "Departamento")" id="DepartamentoDescricaoUrl" />
+<input type="hidden" value="@Url.Action("DepartamentoIdUrl", "Departamento")" id="DepartamentoIdUrl" />
+
+@using (Html.BeginForm("InserirTicket", "Ticket"))
+{
+
+    @Html.ValidationSummary(false)
+    @Html.HiddenFor(a => a.DataCadastro)
+
+    if (Model != null && Model.TicketId > 0)
+    {
+        @Html.HiddenFor(a => a.UsuarioCadId)
+        @Html.HiddenFor(a => a.DataHoraCad)
+        @Html.HiddenFor(a => a.Ativo)
+        
+    }
+    <br />
+
+    @*Início Linha 1*@
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(u => u.Prioridade)
+            @Html.DropDownListFor(a => a.Prioridade, Html.PrioridadeDropDown(Model.Prioridade))
+        </div>
+
+        <div class="col-md-4" id="ticket">
+            @Html.LabelFor(u => u.DepartamentoId)
+            @Html.HiddenFor(u => u.DepartamentoId)
+            <input type="text" id="DepartamentoDescricao" />
+        </div>
+
+        <div class="col-md-4">
+            @Html.LabelFor(u => u.CategoriaId)
+            @Html.DropDownListFor(a => a.CategoriaId, Html.CategoriaDropDown(Model.CategoriaId))
+        </div>
+
+        <div class="col-md-12">
+            @Html.LabelFor(u => u.Assunto)
+            @Html.EditorFor(u => u.Assunto)
+        </div>
+    </div>
+    @*Fim Linha 1
+
+        Início Linha 2*@
+    <div class="row">
+        <div class="col-md-12">
+            @Html.LabelFor(u => u.Descricao)
+            @Html.TextAreaFor(u => u.Descricao, new { @rows = 5 })
+        </div>
+    </div>
+
+    @*Fim Linha 2
+
+        Início Linha 3*@
+
+    <div class="btn">
+        <input type="submit" value="Salvar" class="btn btn-primary" id="btnSalvarTicket" />
+    </div>
+    @*Fim Linha 3*@
+}
+
+
+
+
+

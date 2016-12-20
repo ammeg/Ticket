@@ -1,0 +1,103 @@
+﻿@model Syns.Ticket.Business.Entities.TicketAndamentoEntity
+@{
+    ViewBag.Title = "_TicketAndamentoCad";
+}
+
+@*auto complete usuario*@
+<input type="hidden" value="@Url.Action("UsuarioNomeUrl", "Usuario")" id="UsuarioNomeUrl" />
+<input type="hidden" value="@Url.Action("UsuarioIdUrl", "Usuario")" id="UsuarioIdUrl" />
+@*auto complete departamento*@
+<input type="hidden" value="@Url.Action("DepartamentoDescricaoUrl", "Departamento")" id="DepartamentoDescricaoUrl" />
+<input type="hidden" value="@Url.Action("DepartamentoIdUrl", "Departamento")" id="DepartamentoIdUrl" />
+
+
+<br />
+<div id="ticketAndamentoDiv">
+    @using (Ajax.BeginForm("InserirAndamento", "Ticket",
+        new AjaxOptions()
+        {
+            HttpMethod = "POST",
+            OnComplete = "OnCompleteAndamento"
+        }))
+    {
+        @Html.ValidationSummary(true)
+        if (Model != null)
+        {
+            @Html.HiddenFor(a => a.UsuarioCadId)
+            @Html.HiddenFor(a => a.DataHoraCad)
+            @Html.HiddenFor(a => a.Ativo)
+        }
+        <br />
+        @Html.HiddenFor(a => a.TicketId)
+
+
+        @*Início Linha 1*@
+
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-md-3">
+
+
+                    @Html.LabelFor(u => u.Visibilidade)
+                    @Html.DropDownListFor(a => a.Visibilidade, Html.VisibilidadeDropdown(Model.Visibilidade))
+                </div>
+
+                <div class="col-md-3" id="andamento">
+                    @Html.LabelFor(u => u.DepartamentoId)
+                    @Html.HiddenFor(u => u.DepartamentoId)
+                    <input type="text" id="DepartamentoDescricao" />
+                </div>
+
+
+                <div class="col-md-3">
+                    @Html.LabelFor(u => u.UsuarioResponsavelId)
+                    @Html.HiddenFor(u => u.UsuarioResponsavelId)
+                    <input type="text" id="UsuarioResponsavelInput" />
+                </div>
+
+
+                <div class="col-md-3">
+                    @Html.LabelFor(u => u.Status)
+                    @Html.DropDownListFor(a => a.Status, Html.StatusDropDown(Model.Status))
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="row">
+
+                <div class="col-md-4">
+                    @Html.LabelFor(u => u.Data)
+               
+                    @Html.EditorFor(u => u.Data, new { @class = "span2" })
+                </div>
+                <div class="col-md-4">
+                    @Html.LabelFor(u => u.DataHora)
+                    @Html.EditorFor(u => u.DataHora, new { @class = "span2" })
+                </div>
+            </div>
+            @*Fim Linha 1
+
+                Início Linha 2*@
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.LabelFor(u => u.Descricao)
+                    @Html.TextAreaFor(u => u.Descricao, new { @rows = 5 })
+                </div>
+            </div>
+
+            @*Fim Linha 2
+
+                Início Linha 3*@
+
+            <div>
+                @*<input type="submit" value="Salvar" /><input type="submit" value="Salvar" />*@
+                <input type="submit" value="Salvar" class="btn btn-primary" id="btnSalvar" />
+            </div>
+
+            @*Fim Linha 3*@
+
+
+        </div>
+    }
+
+</div>

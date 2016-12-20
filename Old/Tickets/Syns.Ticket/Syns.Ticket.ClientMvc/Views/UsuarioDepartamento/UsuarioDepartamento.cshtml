@@ -1,0 +1,73 @@
+﻿@model Syns.Ticket.Business.Entities.UsuarioDepartamentoEntity
+@{
+    ViewBag.Title = "UsuarioDepartamento";
+}
+
+<h2>UsuarioDepartamento</h2>
+
+@*auto complete usuario*@
+<input type="hidden" value="@Url.Action("UsuarioNomeUrl", "Usuario")" id="UsuarioNomeUrl" />
+<input type="hidden" value="@Url.Action("UsuarioIdUrl", "Usuario")" id="UsuarioIdUrl" />
+@*auto complete departamento*@
+<input type="hidden" value="@Url.Action("DepartamentoDescricaoUrl", "Departamento")" id="DepartamentoDescricaoUrl" />
+<input type="hidden" value="@Url.Action("DepartamentoIdUrl", "Departamento")" id="DepartamentoIdUrl" />
+
+
+<h2>Inserir</h2>
+
+@using (Html.BeginForm())
+{
+
+
+    if (Model != null && Model.DepartamentoId != 0 &&Model.DepartamentoId !=0)
+    {
+        @Html.HiddenFor(a => a.UsuarioId)
+        @Html.HiddenFor(a => a.DepartamentoId)
+        @Html.HiddenFor(a => a.UsuarioCadId)
+        @Html.HiddenFor(a => a.DataHoraCad)
+        @Html.HiddenFor(a => a.Ativo)
+
+    }
+    <div>
+        <div>
+            @Html.LabelFor(u => u.UsuarioId)
+            @Html.HiddenFor(u => u.UsuarioId)
+            <input type="text" id="UsuarioNomeInput" />
+        </div>
+
+        <div>
+            @Html.LabelFor(u => u.DepartamentoId)
+            @Html.HiddenFor(u => u.DepartamentoId)
+            <input type="text" id="DepartamentoDescricao" />
+        </div>
+
+        <div>
+            @Html.LabelFor(u => u.Responsavel)
+            @Html.EditorFor(u => u.Responsavel)
+        </div>
+    </div>
+    <br />
+    <div class="button">
+        <input class="btn btn-primary" type="submit" value="Salvar" />
+    </div>
+
+    @section styles {
+        <link href="~/Content/themes/base/jquery.ui.all.css" rel="stylesheet" />
+    }
+
+    @section scripts {
+        <script src="~/Scripts/jquery-ui-1.10.4.js"></script>
+        <script src="~/Scripts/syns/Departamento/Departamento.Autocomplete.js"></script>
+        <script src="~/Scripts/syns/Usuario/Usuario.Autocomplete.js"></script>
+        <script type="text/javascript">
+            $("#UsuarioNomeInput").usuario({  // colocar de usuário
+                usuarioId: $("#UsuarioId")
+            });
+
+            $("#DepartamentoDescricao").departamento({    //colocar de departamento
+                departamentoId: $("#DepartamentoId")
+            });
+
+        </script>
+    }
+}

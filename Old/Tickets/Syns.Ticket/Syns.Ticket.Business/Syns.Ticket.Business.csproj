@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{585169B7-3542-40B4-8DB2-BE850D03D73E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Syns.Ticket.Business</RootNamespace>
+    <AssemblyName>Syns.Ticket.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseBusiness.cs" />
+    <Compile Include="DepartamentoBusiness.cs" />
+    <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\DepartamentoEntity.cs" />
+    <Compile Include="Entities\IEntity.cs" />
+    <Compile Include="Entities\TicketAndamentoEntity.cs" />
+    <Compile Include="Entities\TicketAnexoEntity.cs" />
+    <Compile Include="Entities\TicketEntity.cs" />
+    <Compile Include="Entities\UsuarioDepartamentoEntity.cs" />
+    <Compile Include="Entities\UsuarioPerfilEntity.cs" />
+    <Compile Include="Entities\SistemaEntity.cs" />
+    <Compile Include="Entities\UsuarioEntity.cs" />
+    <Compile Include="Models\DepartamentoPesquisa.cs" />
+    <Compile Include="Models\DepartamentoPesquisar.cs" />
+    <Compile Include="Models\TicketAndamentoPesquisa.cs" />
+    <Compile Include="Models\TicketAnexo.cs" />
+    <Compile Include="Models\TicketAnexoPesquisa.cs" />
+    <Compile Include="Models\TicketPesquisa.cs" />
+    <Compile Include="Models\TicketPesquisaRestricoes.cs" />
+    <Compile Include="Models\UsuarioDepartamentoPesquisa.cs" />
+    <Compile Include="Models\UsuarioPesquisa.cs" />
+    <Compile Include="OrderByHelper.cs" />
+    <Compile Include="PagingExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SynsTicketContext.cs" />
+    <Compile Include="TicketAndamentoBusiness.cs" />
+    <Compile Include="TicketAnexoBusiness.cs" />
+    <Compile Include="TicketBusiness.cs" />
+    <Compile Include="UsuarioBusiness.cs" />
+    <Compile Include="UsuarioDepartamentoBusiness.cs" />
+    <Compile Include="UsuarioPerfilBusiness.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Diagramas\PropriedadesClasses.cd" />
+    <None Include="Diagramas\MetodosClasses.cd" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Syns.Ticket.Lib\Syns.Ticket.Lib.csproj">
+      <Project>{6fc08357-92a4-4228-a9b7-4b68857cd632}</Project>
+      <Name>Syns.Ticket.Lib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

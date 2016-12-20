@@ -1,0 +1,206 @@
+﻿@*@model List<Syns.Ticket.Business.Entities.TicketEntity>*@
+@*@model Syns.Ticket.ClientMvc.Models.TicketModel*@
+@model Syns.Ticket.ClientMvc.Models.TicketModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<input type="hidden" value="@Url.Action("PesquisarTicketTable", "Ticket")" id="pesquisarUrl" />
+<input type="hidden" value="@Url.Action("Selecionar", "Ticket")" id="selecionarId" />
+<input type="hidden" value="@Url.Action("EditarTicket", "Ticket")" id="cancelar" />
+<input type="hidden" value="@Url.Action("EditarTicket", "Ticket")" id="abrir" />
+<input type="hidden" value="@Url.Action("EditarTicket", "Ticket")" id="adicionar" />
+
+<h2>Index</h2>
+
+
+<div>
+    @Html.ActionLink("Inserir", "InserirTicket", null, new { @class = "btn btn-primary" })
+</div>
+
+
+<div class="row" id="parametros">
+    <div class="col-md-3">
+        <label>Departamento</label>
+        <input type="text" id="departamento" value="@ViewBag.Departamento" />
+    </div>
+    <div class="col-md-3">
+        <label>Prioridade</label>
+        <input type="text" id="prioridade" value="@ViewBag.Prioridade" />
+    </div>
+    <div class="col-md-3">
+        <label>Categoria</label>
+        <input type="text" id="categoria" value="@ViewBag.Categoria" />
+    </div>
+    <div class="col-md-3">
+        <label>Usuário</label>
+        <input type="text" id="usuario" value="@ViewBag.Usuario" />
+    </div>
+    <div class="col-md-3">
+        <label>Responsável</label>
+        <input type="text" id="responsavel" value="@ViewBag.UsuarioResponsavel" />
+    </div>
+    <div class="col-md-3">
+        <label>Assunto</label>
+        <input type="text" id="assunto" value="@ViewBag.Assunto" />
+    </div>
+    <div class="col-md-3">
+        <label>Periodo</label>
+        <input type="text" id="periodo" value="@ViewBag.Perioddo" />
+    </div>
+</div>
+
+@*<div>
+        @Html.ActionLink("Inserir", "Inserir", null, new { @class = "btn btn-primary" })
+    </div>*@
+
+<table class="table table-bordered" id="tblTicket">
+    <thead>
+        <tr>
+            <td>Visualizar</td>
+            <td>Abrir</td>
+            <td>Adcionar</td>
+            <td>Prioridade</td>
+            <td>Categoria</td>
+            <td>Assunto</td>
+            <td>Departamento</td>
+            <td>Usuário</td>
+            <td>Usuário Responsável</td>
+        e</tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
+@*@foreach (var ticket in Model.TicketList)
+    {
+        <tr>
+            <td>@Html.ActionLink("Editar", "EditarTicket", new { @id = ticket.TicketId })</td>
+            <td>@Html.ActionLink("Visualizar", "Visualizar", new { @id = ticket.TicketId })</td>
+            <td>@ticket.TicketId</td>
+            <td>@ticket.Prioridade</td>
+            <td>@ticket.Assunto</td>
+            <td>@ticket.DepartamentoId</td>
+            <td>@ticket.UsuarioId</td>
+            <td>@ticket.UsuarioResponsavel</td>
+            @*<td>@ticket.Protocolo</td>
+
+            <td>@ticket.Descricao</td>
+            <td>@ticket.CategoriaId</td>
+            <td>@ticket.Visibilidade</td>
+
+            <td>@ticket.DataCadastro</td>
+            <td>@ticket.DataPrevisao</td>
+        </tr>
+    }*@
+@section styles {
+    <link href="~/Scripts/DataTables-1.9.4/media/css/jquery.dataTables.css" rel="stylesheet" />
+}
+
+@section scripts {
+    <script src="~/Scripts/DataTables-1.9.4/media/js/jquery.dataTables.js"></script>
+    <script src="~/Scripts/jquery.dataTables.columnFilter.js"></script>
+    @*<script src="~/Scripts/syns/Ticket_Table.js"></script>*@
+    <script type="text/javascript">
+        $.extend($.fn.dataTable.defaults, {
+            "bFilter": true,
+            "aLengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
+            "sPaginationType": "full_numbers",
+            "bProcessing": true,
+            "bServerSide": true,
+            "bStateSave": true,
+            "bSortMulti": false,
+        });
+
+        var pesquisar = $("#pesquisarUrl").val();
+        var selecionar = $("#selecionarId").val();
+        var abrir = $("#abrir").val();
+        var adicionar = $("#adicionar").val();
+
+
+        var table = $("#tblTicket").dataTable({
+
+            "oLanguage": {
+                "oPaginate": {
+                    "sFirst": "Primeira",
+                    "sLast": "Última",
+                    "sNext": "Próxima",
+                    "sPrevious": "Anterior"
+                },
+                "sEmptyTable": "Nenhum registro encontrado",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sInfo": "Mostrando _START_ de _END_ de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando 0 de _END_ de _TOTAL_ registros",
+                "sLoadingRecords": "Aguarde...",
+                "sProcessing": "Aguarde..."
+            },
+
+
+            "sCookiePrefix": "SYNS_Ticket_Pesquisa_",
+            "aoColumns": [
+                    {
+                        "bSortable": false,
+                        "bSearchable": false,
+                        "mData": "TicketId",
+                        "fnRender": function (oObj) {
+                            return "<a href='" + selecionar + "/" + oObj.aData.TicketId + "'> Visualizar ></a>";
+                        }
+                    },
+                    {
+
+                        "bSortable": false,
+                        "bSearchable": false,
+                        "mData": "Ticket3Id",
+                        "fnRender": function (oObj) {
+                            return "<a href='" + abrir + "/" + oObj.aData.Ticket3Id + "'><img src=@Url.Content("~/Images/abrir.jpg")></a>";
+                        }
+                    },
+                    {
+                        "bSortable": false,
+                        "bSearchable": false,
+                        "mData": "Ticket2Id",
+                        "fnRender": function (oObj) {
+                            return "<a href='" + adicionar + "/" + oObj.aData.Ticket2Id + "#andamentoDiv'><img src=@Url.Content("~/Images/adicionar.jpg")></a>";
+
+
+                        }
+                    },
+
+                    { "mData": "Prioridade" },
+                    { "mData": "Categoria" },
+                    { "mData": "Assunto" },
+                    { "mData": "departamento" },
+                    { "mData": "usuario" },
+                    { "mData": "usuarioResponsavel" },
+
+
+            ],
+
+            "sAjaxSource": pesquisar,
+
+            "fnServerData": function (sSource, aoData, fnCallback) {
+
+
+                aoData.push({ "name": "prioridade", "value": $('#prioridade').val() });
+                aoData.push({ "name": "categoria", "value": $('#categoria').val() });
+                aoData.push({ "name": "assunto", "value": $('#assunto').val() });
+                aoData.push({ "name": "departamento", "value": $('#departamento').val() });
+                aoData.push({ "name": "usuario", "value": $('#usuario').val() });
+                aoData.push({ "name": "usuarioResponsavel", "value": $('#usuarioResponsavel').val() });
+
+
+                $.getJSON(sSource, aoData, function (json) {
+                    fnCallback(json);
+                });
+            }
+        });
+
+        $('#parametros').change(function () {
+            table.fnFilter();
+        });
+
+        $(".dataTables_filter").hide();
+
+
+    </script>
+}

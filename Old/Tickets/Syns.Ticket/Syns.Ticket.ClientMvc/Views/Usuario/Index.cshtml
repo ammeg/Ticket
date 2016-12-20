@@ -1,0 +1,41 @@
+﻿@*temos que usar como model a nossa classe de pesquisa usado no metodo pesquisar de nossa business*@
+@*@model List<Syns.Ticket.Business.Entities.UsuarioEntity>*@
+@model List<Syns.Ticket.Business.Models.UsuarioPesquisa>
+@{
+    ViewBag.Title = "Index";
+}
+
+<input type="hidden" value="@Url.Action("Pesquisar", "Usuario")" id="pesquisarUrl" />
+<input type="hidden" value="@Url.Action("Selecionar", "Usuario")" id="selecionarId" />
+
+<h2>Index</h2>
+
+<div>
+    @Html.ActionLink("Inserir", "Inserir", null, new { @class = "btn btn-primary" })
+</div>
+<div>
+    <b> Nome: </b>
+    <input type="text" id="nome" value="@ViewBag.Nome" />
+</div>
+<table class="table table-bordered" id="tblUsuario">
+    <thead>
+        <tr>
+            <td></td>
+            <td>Nome</td>
+            <td>Login</td>
+            <td>Perfil</td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
+@section styles {
+    <link href="~/Scripts/DataTables-1.9.4/media/css/jquery.dataTables.css" rel="stylesheet" />
+}
+
+@section scripts {
+    <script src="~/Scripts/DataTables-1.9.4/media/js/jquery.dataTables.js"></script>
+    <script src="~/Scripts/jquery.dataTables.columnFilter.js"></script>
+    <script src="@Url.Script("~/Scripts/syns/Usuario/Usuario.Index.js")"></script>
+}

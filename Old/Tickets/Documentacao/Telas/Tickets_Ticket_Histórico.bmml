@@ -1,0 +1,47 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1110" measuredH="740" mockupW="1053" mockupH="720">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="57" y="20" w="1053" h="720" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>squareBreakline</borderStyle>
+        <text>A%20Web%20Page%0Ahttp%3A//www.lucasostsm.com.br/SistemaDeTickets/Tickets</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::MenuBar" x="68" y="97" w="1030" h="52" measuredW="240" measuredH="29" zOrder="1" locked="true" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>square</borderStyle>
+        <icon>HomeIcon%7Csmall</icon>
+        <selectedIndex>1</selectedIndex>
+        <text>Home%2C%20Ticket%2C%20Cadastro</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::IconLabel" x="1052" y="97" w="-1" h="-1" measuredW="25" measuredH="39" zOrder="2" locked="true" isInGroup="-1">
+      <controlProperties>
+        <icon>XIcon%7Csmall</icon>
+        <text>Sair</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="813" y="113" w="211" h="-1" measuredW="194" measuredH="21" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>28/03/2014%20Boa%20Tarde%20%23Usu%E1rio</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Label" x="502" y="149" w="-1" h="-1" measuredW="290" measuredH="48" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>13369344</color>
+        <size>40</size>
+        <text>Tickets%20-%20Inserir</text>
+      </controlProperties>
+    </control>
+    <control controlID="33" controlTypeID="com.balsamiq.mockups::ButtonBar" x="112" y="212" w="892" h="27" measuredW="290" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>3</selectedIndex>
+        <text>Ticket%2C%20Anexo%2C%20Andamento%2C%20Hist%F3rico</text>
+      </controlProperties>
+    </control>
+    <control controlID="41" controlTypeID="com.balsamiq.mockups::DataGrid" x="112" y="261" w="892" h="250" measuredW="599" measuredH="171" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Descri%E7%E3o%2C%20Data%0ALucas%20alterou%20o%20Status%20do%20Ticket%20para%20Fechado%2C%2027/03/2014%0ALucas%20alterou%20o%20departamento%20respons%E1vel%20de%20SYNS%20para%20Tecnologia%20da%20Informa%E7%E3o%2C%2026/03/2014%0AFelipe%20adicionou%20nova%20descri%E7%E3o%20ao%20andamento%2C%2025/03/2014%0ALucas%20adicionou%20novos%20dados%20ao%20andamento%2C%2025/03/2014%0AFelipe%20criou%20ticket%2C%2023/03/2014</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

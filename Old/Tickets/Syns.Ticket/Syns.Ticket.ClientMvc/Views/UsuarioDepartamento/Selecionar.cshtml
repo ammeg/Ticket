@@ -1,0 +1,46 @@
+﻿@model Syns.Ticket.Business.Entities.UsuarioDepartamentoEntity
+@{
+    ViewBag.Title = "Selecionar";
+}
+
+<h2>Selecionar</h2>
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    Departamento <b>@Html.DisplayFor(a => a.DepartamentoId)</b> e Usuário <b>@Html.DisplayFor(a => a.UsuarioId)</b> Selecionado
+                </a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <div>
+                    <div>
+                        @Html.LabelFor(a => a.UsuarioId):
+                        @Html.DisplayFor(a => a.UsuarioId)
+                    </div>
+                    <div>
+                        @Html.LabelFor(a => a.DepartamentoId):
+                        @Html.DisplayFor(a => a.DepartamentoId)
+                    </div>
+                    <div>
+                        @Html.LabelFor(a => a.Responsavel):
+                        @Html.DisplayFor(a => a.Responsavel)
+                    </div>
+                    
+                </div>
+                <div>
+
+                    @Html.ActionLink("Editar", "Editar", "UsuarioDepartamento", new { @usuario = Model.UsuarioId, @departamento = Model.DepartamentoId}, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Excluir", "Excluir", "UsuarioDepartamento", new { @usuario = Model.UsuarioId, @departamento = Model.DepartamentoId }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Voltar", "Index", "UsuarioDepartamento", null, new { @class = "btn btn-default" })
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
