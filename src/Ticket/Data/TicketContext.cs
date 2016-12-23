@@ -4,25 +4,8 @@ using Ticket.Models;
 
 namespace Ticket.Data
 {
-    public class TicketContext : DbContext
-    {
-        //Models
-        public DbSet<Usuario> Usuario { get; set; }
-
-        public DbSet<Sistema> Sistema { get; set; }
-
-        public DbSet<UsuarioPerfil> UsuarioPerfil { get; set; }
-
-        public DbSet<Departamento> Departamento { get; set; }
-
-        public DbSet<Tickets> Ticket { get; set; }
-
-        public DbSet<UsuarioDepartamento> UsuarioDepartamento { get; set; }
-
-        public DbSet<TicketAnexo> TicketAnexo { get; set; }
-
-        public DbSet<TicketAndamento> TicketAndamento { get; set; }
-
+    public class TicketContext : IdentityDbContext<ApplicationUser>
+    {        
         public TicketContext(DbContextOptions<TicketContext> options)
             : base(options)
         {
@@ -35,5 +18,7 @@ namespace Ticket.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
+
+        public DbSet<Departamento> Departamento { get; set; }
     }
 }

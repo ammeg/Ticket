@@ -1,0 +1,66 @@
+@model Ticket.Models.Departamento
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Departamento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DataHoraAlteracao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataHoraAlteracao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataHoraCad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataHoraCad)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartamentoMasterId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DepartamentoMasterId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sigla)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sigla)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioAlteracao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioAlteracao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioCad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioCad)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.DepartamentoId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

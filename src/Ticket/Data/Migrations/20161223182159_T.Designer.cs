@@ -8,9 +8,10 @@ using Ticket.Data;
 namespace Ticket.Data.Migrations
 {
     [DbContext(typeof(TicketContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20161223182159_T")]
+    partial class T
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
