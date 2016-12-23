@@ -4,7 +4,7 @@ using Ticket.Models;
 
 namespace Ticket.Data
 {
-    public class TicketContext : IdentityDbContext<ApplicationUser>
+    public class TicketContext : DbContext
     {
         //Models
         public DbSet<Usuario> Usuario { get; set; }

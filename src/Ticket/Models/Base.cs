@@ -1,4 +1,6 @@
-﻿namespace Ticket.Models
+﻿using System;
+
+namespace Ticket.Models
 {
     public abstract class Base
     {
