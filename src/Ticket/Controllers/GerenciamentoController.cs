@@ -13,17 +13,17 @@ using Ticket.Services;
 namespace Ticket.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class GerenciamentoController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<Usuario> _userManager;
+        private readonly SignInManager<Usuario> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
 
-        public ManageController(
-        UserManager<ApplicationUser> userManager,
-        SignInManager<ApplicationUser> signInManager,
+        public GerenciamentoController(
+        UserManager<Usuario> userManager,
+        SignInManager<Usuario> signInManager,
         IEmailSender emailSender,
         ISmsSender smsSender,
         ILoggerFactory loggerFactory)
@@ -32,7 +32,7 @@ namespace Ticket.Controllers
             _signInManager = signInManager;
             _emailSender = emailSender;
             _smsSender = smsSender;
-            _logger = loggerFactory.CreateLogger<ManageController>();
+            _logger = loggerFactory.CreateLogger<GerenciamentoController>();
         }
 
         //
@@ -126,7 +126,7 @@ namespace Ticket.Controllers
                 await _signInManager.SignInAsync(user, isPersistent: false);
                 _logger.LogInformation(1, "User enabled two-factor authentication.");
             }
-            return RedirectToAction(nameof(Index), "Manage");
+            return RedirectToAction(nameof(Index), "Gerenciamento");
         }
 
         //
@@ -142,7 +142,7 @@ namespace Ticket.Controllers
                 await _signInManager.SignInAsync(user, isPersistent: false);
                 _logger.LogInformation(2, "User disabled two-factor authentication.");
             }
-            return RedirectToAction(nameof(Index), "Manage");
+            return RedirectToAction(nameof(Index), "Gerenciamento");
         }
 
         //
@@ -303,7 +303,7 @@ namespace Ticket.Controllers
         public IActionResult LinkLogin(string provider)
         {
             // Request a redirect to the external login provider to link a login for the current user
-            var redirectUrl = Url.Action("LinkLoginCallback", "Manage");
+            var redirectUrl = Url.Action("LinkLoginCallback", "Gerenciamento");
             var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl, _userManager.GetUserId(User));
             return Challenge(properties, provider);
         }
@@ -350,7 +350,7 @@ namespace Ticket.Controllers
             Error
         }
 
-        private Task<ApplicationUser> GetCurrentUserAsync()
+        private Task<Usuario> GetCurrentUserAsync()
         {
             return _userManager.GetUserAsync(HttpContext.User);
         }

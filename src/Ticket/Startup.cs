@@ -43,8 +43,8 @@ namespace Ticket
             services.AddDbContext<TicketContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<TicketContext>()
+            services.AddIdentity<Usuario, Grupo>()
+                .AddEntityFrameworkStores<TicketContext, Guid>()
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
