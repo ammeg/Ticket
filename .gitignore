@@ -14,3 +14,5 @@
 /src/Ticket/bin/Debug/netcoreapp1.0
 /src/Ticket/obj/Debug/netcoreapp1.0
 /src/Ticket/Ticket.xproj.user
+*.suo
+/src/Ticket/obj
