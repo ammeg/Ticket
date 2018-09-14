@@ -77,5 +77,7 @@ namespace Ticket.Models
         }
 
         public DbSet<Ticket.Models.Departamento> Departamentoes { get; set; }
+
+        public DbSet<Ticket.Models.TicketAnexo> TicketAnexoes { get; set; }
     }
 }

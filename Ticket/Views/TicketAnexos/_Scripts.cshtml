@@ -1,0 +1,14 @@
+<script>
+	function TicketAnexoOnBegin() {
+        $('#ticketAnexo').html(MensagemInfo('Aguarde...'));
+    }
+    function TicketAnexoOnComplete() {
+
+    }
+    function TicketAnexoOnFailure(a,b,c) {
+        $('#ticketAnexo').html(MensagemDanger('Falha ao processar requisição, recarregue a página e tente novamente.'));
+    }
+    function TicketAnexoOnSuccess() {
+    }
+</script>
+

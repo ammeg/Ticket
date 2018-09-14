@@ -1,0 +1,30 @@
+@model Ticket.Models.TicketAnexo
+@{
+	var ajaxOptions = new AjaxOptions()
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "ticketAnexo",
+        OnBegin = "TicketAnexoOnBegin",
+        OnComplete = "TicketAnexoOnComplete",
+        OnFailure = "TicketAnexoOnFailure",
+        OnSuccess = "TicketAnexoOnSuccess"
+    };
+}
+
+@using (Ajax.BeginForm("EditarPartial", "TicketAnexos", ajaxOptions))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @Html.Partial("_CriarOuEditar")
+
+    <div class="row form-group">
+        <div class="col-lg-12">
+            @Ajax.RawActionLink("<i class=\"fa fa-arrow-left fa-fw\"></i> Cancelar", "CancelarPartial", "TicketAnexos", new { ticketId = Model.TicketId }, ajaxOptions, new { @class= "btn btn-default" })            
+            <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-fw"></i> Salvar</button>
+        </div>
+    </div>
+}
+@Html.Partial("_Scripts")

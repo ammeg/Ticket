@@ -1,0 +1,39 @@
+@model Ticket.ViewModels.TicketAnexosPartialViewModel
+@{
+    var ajaxOptions = new AjaxOptions()
+    {
+        HttpMethod = "GET",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "ticketAnexo",
+        OnBegin = "TicketAnexoOnBegin",
+        OnComplete = "TicketAnexoOnComplete",
+        OnFailure = "TicketAnexoOnFailure",
+        OnSuccess = "TicketAnexoOnSuccess"
+
+    };
+}
+
+<div id="ticketAnexo">
+    @if (ViewBag.Mensagens != null && ((List<string>)ViewBag.Mensagens).Any())
+    {
+        <div class="alert alert-warning alert-dismissible" role="alert" id="alert-warning">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Atenção!</strong>
+            @foreach (var mensage in (List<string>)ViewBag.Mensagens)
+            {
+                <p>@mensage</p>
+            }
+        </div>
+    }
+    <div class="row form-group">
+        <div class="col-md-12 col-xs-6">
+            @Ajax.ActionLink("Criar", "CriarPartial", new { ticketId = Model.TicketId }, ajaxOptions)
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-12 col-xs-6">
+            @Html.Partial("_Listar", Model.Pesquisa)
+        </div>
+    </div>
+</div>
+@Html.Partial("_Scripts")

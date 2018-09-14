@@ -201,6 +201,7 @@
     <Compile Include="Controllers\DepartamentosController.cs" />
     <Compile Include="Controllers\InicialController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TicketAnexosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -222,6 +223,8 @@
     <Compile Include="ViewModels\IPagedListViewModel.cs" />
     <Compile Include="ViewModels\PagedListRenderOptionsCustom.cs" />
     <Compile Include="ViewModels\PagedListViewModel.cs" />
+    <Compile Include="ViewModels\TicketAnexosPartialViewModel.cs" />
+    <Compile Include="ViewModels\TicketAnexosViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -359,6 +362,13 @@
     <Content Include="Views\Departamentos\Excluir.cshtml" />
     <Content Include="Views\Departamentos\_Scripts.cshtml" />
     <Content Include="Views\Departamentos\_Detalhes.cshtml" />
+    <Content Include="Views\TicketAnexos\_CriarOuEditar.cshtml" />
+    <Content Include="Views\TicketAnexos\_Criar.cshtml" />
+    <Content Include="Views\TicketAnexos\_Editar.cshtml" />
+    <Content Include="Views\TicketAnexos\_Excluir.cshtml" />
+    <Content Include="Views\TicketAnexos\_Indice.cshtml" />
+    <Content Include="Views\TicketAnexos\_Listar.cshtml" />
+    <Content Include="Views\TicketAnexos\_Scripts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

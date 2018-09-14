@@ -1,0 +1,97 @@
+@using Ticket.ViewModels
+@model TicketAnexosViewModel
+@{
+var ajaxOptionsEditar = new AjaxOptions()
+    {
+        HttpMethod = "GET",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "ticketAnexo",
+        OnFailure = "TicketAnexoOnFailure",
+        OnBegin = "TicketAnexoOnBegin"
+    };
+
+    var ajaxOptionsExcluir = new AjaxOptions()
+    {
+        HttpMethod = "GET",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "ticketAnexo",
+        OnFailure = "TicketAnexoOnFailure",
+        OnBegin = "TicketAnexoOnBegin"
+    };
+
+    var ajaxOptionsPesquisar = new AjaxOptions()
+    {
+        HttpMethod = "GET",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "ticketAnexo",
+        OnFailure = "TicketAnexoOnFailure",
+        OnBegin = "TicketAnexoOnBegin"
+    };
+	var isEditar = User.IsAuthorized("TicketAnexos", "EditarPartial", "");
+    var isExcluir = User.IsAuthorized("TicketAnexos", "ExcluirPartial", "");
+}
+
+<div id="no-more-tables">
+	<table class="table-bordered table-striped table-condensed cf table-hover col-md-12">
+		<thead class="cf">
+			<tr>
+				@if (isEditar || isExcluir)
+                {
+					<th class="col-lg-2 col-md-3 col-xs-12"></th>
+				}
+				<th>
+					CaminhoArquivo
+				</th>
+				<th>
+					Visibilidade
+				</th>
+				<th>
+					Observacao
+				</th>
+				<th>
+					TicketId
+				</th>
+                                
+            </tr>
+        </thead>
+
+        <tbody>
+			@foreach (var item in Model.Resultados) 
+			{
+				<tr>
+					<td data-title="">
+                        <div class="btn-group">
+							@if (isEditar)
+                            {
+								@Ajax.RawActionLink("<i class=\"fa fa-edit fa-align-left\"></i>", "EditarPartial", "TicketAnexos", new { id = item.TicketAnexoId }, ajaxOptionsEditar, new { @class = "btn btn-default", @title = "Editar" })
+							}
+							@if (isExcluir)
+							{
+								@Ajax.RawActionLink("<i class=\"fa fa-trash fa-align-right\"></i>", "ExcluirPartial", "TicketAnexos", new { id = item.TicketAnexoId }, ajaxOptionsExcluir, new { @class = "btn btn-default", @title = "Excluir" })
+							}
+                        </div>
+                    </td>
+					<td data-title="CaminhoArquivo">
+						@item.CaminhoArquivo
+					</td>
+					<td data-title="Visibilidade">
+						@item.Visibilidade
+					</td>
+					<td data-title="Observacao">
+						@item.Observacao
+					</td>
+					<td data-title="TicketId">
+						@item.TicketId
+					</td>
+				</tr>
+			}                            
+        </tbody>
+    </table>
+</div>
+
+@Html.PagedListPager(Model.Resultados, page => Url.Action("IndicePartial", 
+	new TicketAnexosViewModel()
+    {
+        Pagina = page,
+    }), PagedListRenderOptionsCustom.CustomAjax("ticketAnexo"))
+@Html.Partial("_Scripts")

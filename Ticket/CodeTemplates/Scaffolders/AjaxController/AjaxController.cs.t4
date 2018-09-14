@@ -14,7 +14,7 @@ using System.Web.Mvc;
 using System.Threading.Tasks;
 using PagedList.EntityFramework;
 using System.Net;
-using System.Transactions;
+using Ticket.Models;
 using <#= Model.ViewModelsNamespace #>;
 
 namespace <#= Model.ControllerNamespace #>
@@ -45,6 +45,7 @@ namespace <#= Model.ControllerNamespace #>
 
     public class <#= Model.ControllerName #> : Controller
     {		
+		protected readonly ApplicationDbContext _db = new ApplicationDbContext();
         //
         // GET: /<#= routingName #>/IndicePartial
         public async Task<ActionResult> IndicePartial(<#= Model.Name#>PartialViewModel viewModel)
