@@ -1,0 +1,185 @@
+<#@ template language="C#" HostSpecific="True"  inherits="DynamicTransform" #>
+<#@ Output Extension="cs" #>
+<#@ assembly name="System.Data.Entity" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="EnvDTE" #>
+using System;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Web.Mvc;
+using System.Threading.Tasks;
+using PagedList.EntityFramework;
+using System.Net;
+using Syns.Models;
+using System.Transactions;
+using <#= Model.ViewModelsNamespace #>;
+
+namespace <#= Model.ControllerNamespace #>
+{   
+<#  
+   
+    var modelType = (CodeType)Model.ModelType; 	
+	var displayColumn = GetDisplayColumn(modelType);
+
+    var modelName = modelType.Name; 
+    var modelNamePlural = Model.ModelTypePluralized; 
+    var modelVariable = Char.ToLower(modelName[0]) + modelName.Substring(1); 
+	var fkName = Char.ToLower(Model.FkName[0]) + Model.FkName.Substring(1);
+   //modelType.FkName.ToLower();
+    var relatedEntities = ((IEnumerable)Model.RelatedEntities).OfType<RelatedEntityInfo>()
+			.Where(x => x.RelationType == RelationType.Parent)
+			.Where(x => x.RelationName != "UsuarioCad")
+			.Where(x => !Model.FkName.StartsWith(x.RelationName));
+    var primaryKeyProperty = modelType.VisibleMembers().OfType<CodeProperty>().Single(x => x.Name == Model.PrimaryKey); 
+    var routingName = Regex.Replace(Model.ControllerName, "Controller$", "", RegexOptions.IgnoreCase);
+    var isObjectContext = ((CodeType)Model.DbContextType).IsAssignableTo<System.Data.Objects.ObjectContext>();
+
+	var primaryKeyShortTypeName = primaryKeyProperty.Type.AsString;
+    var primaryKeyType = primaryKeyProperty.Type.AsFullName;
+	
+	var primaryKeyNullableTypeName = GetNullableTypeName(primaryKeyType, primaryKeyShortTypeName);	
+#>
+
+    public class <#= Model.ControllerName #> : Controller
+    {		
+        //
+        // GET: /<#= routingName #>/IndicePartial
+        public async Task<ActionResult> IndicePartial(<#= Model.Name#>PartialViewModel viewModel)
+        {
+			if (viewModel.Pesquisa == null)
+                viewModel.Pesquisa = new <#= Model.Name#>ViewModel();
+
+            var query = _db.<#= modelNamePlural #>.Where(a => a.<#=Model.FkName#> == viewModel.<#=Model.FkName#>);
+
+<#if(!string.IsNullOrWhiteSpace(displayColumn)) { #>
+            viewModel.Pesquisa.Resultados = await query.OrderBy(a => a.<#=displayColumn#>).ToPagedListAsync(viewModel.Pesquisa.Pagina, viewModel.Pesquisa.TamanhoPagina);
+<# } else { #>
+			viewModel.Pesquisa.Resultados = await query.ToPagedListAsync(viewModel.Pesquisa.Pagina, viewModel.Pesquisa.TamanhoPagina);			
+<# } #>
+
+            return PartialView("_Indice", viewModel);
+        }
+		
+        //
+        // GET: /<#= routingName #>/CriarPartial
+		public ActionResult CriarPartial(int <#=fkName#>)
+        {
+            return PartialView("_Criar", new <#= modelName #>() { <#=Model.FkName#> = <#=fkName#> });
+        } 
+
+        //
+        // POST: /<#= routingName #>/CriarPartial
+        [HttpPost]
+		[ValidateAntiForgeryToken]
+        public async Task<ActionResult> CriarPartial([Bind(Include = "")]<#= modelName #> <#= modelVariable #>)
+        {
+            if (ModelState.IsValid)
+            {
+<# if(primaryKeyProperty.Type.AsString == "System.Guid") { #>
+                <#= modelVariable #>.<#= primaryKeyProperty.Name #> = Guid.NewGuid();
+<# } #>
+<# if(isObjectContext) { #>
+                _db.<#= modelNamePlural #>.AddObject(<#= modelVariable #>);
+<# } else { #>
+                _db.<#= modelNamePlural #>.Add(<#= modelVariable #>);
+<# } #>
+                await _db.SaveChangesAsync();
+                
+				return await IndicePartial(new <#= Model.Name#>PartialViewModel() { <#=Model.FkName#> = <#= modelVariable #>.<#=Model.FkName#> });
+            }
+
+            return PartialView("_Criar", <#= modelVariable #>);
+        }
+        
+        //
+        // GET: /<#= routingName #>/EditarPartial/5 
+        public async Task<ActionResult> EditarPartial(<#= primaryKeyNullableTypeName #> id)
+        {
+			if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            <#= modelName #> <#= modelVariable #> = await _db.<#= modelNamePlural #>.FindAsync(id);
+            if (<#= modelVariable #> == null)
+            {
+                return HttpNotFound();
+            }            
+
+            return PartialView("_Editar", <#= modelVariable #>);
+        }
+
+        //
+        // POST: /<#= routingName #>/EditarPartial/5
+        [HttpPost]
+		[ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditarPartial([Bind(Include = "")]<#= modelName #> <#= modelVariable #>)
+        {
+			if (ModelState.IsValid)
+            {
+<# if(isObjectContext) { #>
+                _db.<#= modelNamePlural #>.Attach(<#= modelVariable #>);
+                _db.ObjectStateManager.ChangeObjectState(<#= modelVariable #>, EntityState.Modified);
+<# } else { #>
+                _db.Entry(<#= modelVariable #>).State = EntityState.Modified;
+<# } #>
+                await _db.SaveChangesAsync();
+                
+				return await IndicePartial(new <#= Model.Name#>PartialViewModel() { <#=Model.FkName#> = <#= modelVariable #>.<#=Model.FkName#> });
+            }
+
+            return PartialView("_Editar", <#= modelVariable #>);
+        }
+
+        //
+        // GET: /<#= routingName #>/ExcluirPartial/5 
+        public async Task<ActionResult> ExcluirPartial(<#= primaryKeyNullableTypeName #> id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            <#= modelName #> <#= modelVariable #> = await _db.<#= modelNamePlural #>.FindAsync(id);
+            if (<#= modelVariable #> == null)
+            {
+                return HttpNotFound();
+            }   
+  
+            return PartialView("_Excluir", <#= modelVariable #>);
+        }
+
+        //
+        // POST: /<#= routingName #>/ExcluirPartial/5
+        [HttpPost, ActionName("ExcluirPartial")]
+		[ValidateAntiForgeryToken]
+        public async Task<ActionResult> ExcluirConfirmacaoPartial(<#= primaryKeyProperty.Type.AsString #> id)
+        {
+            <#= modelName #> <#= modelVariable #> = await _db.<#= modelNamePlural #>.FindAsync(id);
+<# if(isObjectContext) { #>
+            _db.<#= modelNamePlural #>.DeleteObject(<#= modelVariable #>);
+<# } else { #>
+            _db.<#= modelNamePlural #>.Remove(<#= modelVariable #>);
+<# } #>
+            await _db.SaveChangesAsync();
+            
+			return await IndicePartial(new <#= Model.Name#>PartialViewModel() { <#=Model.FkName#> = <#= modelVariable #>.<#=Model.FkName#> });
+        }
+
+		public async Task<ActionResult> CancelarPartial(int <#=fkName#>)
+        {
+            return await IndicePartial(new <#= Model.Name#>PartialViewModel() { <#=Model.FkName#> = <#=fkName#> });
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing) {
+                _db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}
+<#@ include file="ModelMetadataFunctions.cs.include.t4" #>

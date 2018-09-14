@@ -1,0 +1,34 @@
+<#@ Template Language="C#" HostSpecific="True" Inherits="DynamicTransform" #>
+<#@ Output extension="cshtml" encoding="utf-8"#>
+<#@ assembly name="System.ComponentModel.DataAnnotations" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Data.Entity" #>
+<#@ assembly name="System.Data.Linq" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.ComponentModel.DataAnnotations" #>
+<#@ import namespace="System.Data.Linq.Mapping" #>
+<#@ import namespace="System.Data.Objects.DataClasses" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="EnvDTE" #>
+<# var viewDataType = (CodeType) Model.ViewDataType;
+   var modelType = (CodeType)Model.ModelType;
+   var modelName = modelType.Name;
+   var modelVariable = Char.ToLower(modelName[0]) + modelName.Substring(1); 
+#>
+<script>
+	function <#=modelName#>OnBegin() {
+        $('#<#=modelVariable#>').html(MensagemInfo('Aguarde...'));
+    }
+    function <#=modelName#>OnComplete() {
+
+    }
+    function <#=modelName#>OnFailure(a,b,c) {
+        $('#<#=modelVariable#>').html(MensagemDanger('Falha ao processar requisição, recarregue a página e tente novamente.'));
+    }
+    function <#=modelName#>OnSuccess() {
+    }
+</script>
+<#@ include file="ModelMetadataFunctions.cs.include.t4" #>

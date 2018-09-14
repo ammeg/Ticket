@@ -1,0 +1,44 @@
+<#@ Template Language="C#" HostSpecific="True" Inherits="DynamicTransform" #>
+<#@ Output extension="cshtml" #>
+<#@ assembly name="System.ComponentModel.DataAnnotations" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Data.Entity" #>
+<#@ assembly name="System.Data.Linq" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.ComponentModel.DataAnnotations" #>
+<#@ import namespace="System.Data.Linq.Mapping" #>
+<#@ import namespace="System.Data.Objects.DataClasses" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Reflection" #>
+<# var viewDataType = (EnvDTE.CodeType) Model.ViewDataType; 
+   var relatedEntities = ((IEnumerable)Model.RelatedEntities).OfType<RelatedEntityInfo>();
+#>
+<# if(viewDataType != null) { #>
+@model <#= viewDataType.FullName #>
+<# } #>
+<div class="row form-group">
+    <div class="col-md-12 col-xs-6">
+		<dl>
+<#
+	List<ModelProperty> temp = GetModelProperties(Model.ViewDataType, false);
+	var properties = temp.Where(a=> a.Name != "Ativo" && a.Name != "DataHoraCad" && a.Name != "UsuarioCad");
+
+foreach (ModelProperty property in properties) {
+    if (!property.IsPrimaryKey && !property.IsForeignKey && !property.IsReadOnly) {
+#>
+			<dt>
+				@Html.DisplayNameFor(model => model.<#= property.Name #>)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.<#= property.Name #>)
+			</dd>
+<#
+    }
+}
+#>			
+		</dl>
+    </div>
+</div>
+<#@ include file="ModelMetadataFunctions.cs.include.t4" #>
