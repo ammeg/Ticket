@@ -16,7 +16,6 @@ using System.Web.Mvc;
 using PagedList.EntityFramework;
 using Newtonsoft.Json;
 using System.Net;
-using Syns.Common.Helpers;
 using System.Threading.Tasks;
 <# if(!string.IsNullOrWhiteSpace(Model.AreaNamespace)) {#>
 using <#= Model.AreaNamespace #>.ViewModels;
@@ -56,21 +55,18 @@ namespace <#= Model.ControllerNamespace #>
 #>
     public class <#= Model.ControllerName #> : Controller
     {	
+		protected readonly ApplicationDbContext _db = new ApplicationDbContext();
         //
         // GET: /<#= routingName #>/
         public async Task<ActionResult> Indice()
         {
-			var viewModel = JsonConvert.DeserializeObject<<#= Model.Name#>ViewModel>(await _pesquisaModelService.GetAsync(PesquisaKey));
-
-            return await Pesquisa(viewModel ?? new <#= Model.Name#>ViewModel());
+            return await Pesquisa( new <#= Model.Name#>ViewModel());
         }
 
 		//
         // GET: /<#= routingName #>/Pesquisa
 		public async Task<ActionResult> Pesquisa(<#= Model.Name#>ViewModel viewModel)
 		{
-			await _pesquisaModelService.AddAsync(PesquisaKey, viewModel);
-
 			var query = _db.<#= modelNamePlural #>.AsQueryable();
 
 			//TODO: parâmetros de pesquisa

@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace Ticket.Controllers
 {
-    public class HomeController : Controller
+    public class InicialController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Indice()
         {
             return View();
         }

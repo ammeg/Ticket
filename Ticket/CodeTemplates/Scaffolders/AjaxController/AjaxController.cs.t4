@@ -14,7 +14,6 @@ using System.Web.Mvc;
 using System.Threading.Tasks;
 using PagedList.EntityFramework;
 using System.Net;
-using Syns.Models;
 using System.Transactions;
 using <#= Model.ViewModelsNamespace #>;
 
